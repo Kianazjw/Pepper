@@ -1,5 +1,6 @@
 package com.komorebi.pepper.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
@@ -45,6 +46,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         setMeasuredDimension(size, size);
     }
 
+    @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
 

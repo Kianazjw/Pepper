@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="nav_normal">#ffffff</color>
+    <color name="white">#ffffff</color>
+
+    <color name="clicking_shadow">#ffffff</color>
+    <color name="clicking_shadow_pressed">#EEEEEE</color>
 </resources>

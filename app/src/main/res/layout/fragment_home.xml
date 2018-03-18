@@ -7,11 +7,12 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/bg_home" />
+        android:background="#fff" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <TextView
@@ -20,8 +21,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="24dp"
-            android:textColor="#fff"
+            android:textColor="#999999"
             android:textSize="36sp"
+            android:text="第6周"
             tools:text="第6周" />
 
         <TextView
@@ -30,9 +32,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="4dp"
-            android:textColor="#fff"
+            android:textColor="#808080"
             android:textSize="30sp"
-            tools:text="你好啊\n钟际旺同学" />
+            android:text="你好啊\n曾德帅同学"
+            tools:text="你好啊\n曾德帅同学" />
     </LinearLayout>
 
 
