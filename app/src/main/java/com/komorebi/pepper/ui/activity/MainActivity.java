@@ -1,5 +1,6 @@
 package com.komorebi.pepper.ui.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.left_drawer:
                 break;
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 drawerLayout.closeDrawers();
                 break;
             case R.id.ll_feedback:
+                intent = new Intent(MainActivity.this, BugFeedbackActivity.class);
+                startActivity(intent);
                 drawerLayout.closeDrawers();
                 break;
             case R.id.ll_setting:
@@ -82,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         private List<Fragment> list;
 
-        public MyFragmentPagerAdapter(FragmentManager fm, List<Fragment> list) {
+        MyFragmentPagerAdapter(FragmentManager fm, List<Fragment> list) {
             super(fm);
             this.list = list;
         }
@@ -94,7 +98,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public int getCount() {
-            return list.size();
+//            return list.size();
+            return 3;
         }
     }
 
@@ -157,20 +162,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rbLife = findViewById(R.id.rb_life);
         rbMine = findViewById(R.id.rb_mine);
 
-        //在RadioButton使用中，可能需要放入图片，但是XML中无法直接设置图片的大小
-        Drawable drawableHome = getResources().getDrawable(R.drawable.selector_tab_home);
-        //由 x 和 y 指定左上角的新位置，由 width 和 height 指定新的大小。
-        // left,tob,rigth,bottom 指该矩形各条边到画布坐标轴的距离（一般是画布的左顶点水平方向为X轴，垂直方向为Y轴，Y轴向下为正
-        drawableHome.setBounds(0, 0, 80, 80);
-        rbHome.setCompoundDrawables(null, drawableHome, null, null);//只放上面
+//        //在RadioButton使用中，可能需要放入图片，但是XML中无法直接设置图片的大小
+//        Drawable drawableHome = getResources().getDrawable(R.drawable.selector_tab_home);
+//        //由 x 和 y 指定左上角的新位置，由 width 和 height 指定新的大小。
+//        // left,tob,rigth,bottom 指该矩形各条边到画布坐标轴的距离（一般是画布的左顶点水平方向为X轴，垂直方向为Y轴，Y轴向下为正
+//        drawableHome.setBounds(0, 0, 80, 80);
+//        rbHome.setCompoundDrawables(null, drawableHome, null, null);//只放上面
+//
+//        Drawable drawableLife = getResources().getDrawable(R.drawable.selector_tab_life);
+//        drawableLife.setBounds(0, 0, 80, 80);
+//        rbLife.setCompoundDrawables(null, drawableLife, null, null);
+//
+//        Drawable drawableMine = getResources().getDrawable(R.drawable.selector_tab_mine);
+//        drawableMine.setBounds(0, 0, 80, 80);
+//        rbMine.setCompoundDrawables(null, drawableMine, null, null);
 
-        Drawable drawableLife = getResources().getDrawable(R.drawable.selector_tab_life);
-        drawableLife.setBounds(0, 0, 80, 80);
-        rbLife.setCompoundDrawables(null, drawableLife, null, null);
+        setXX(R.drawable.selector_tab_home, rbHome);
+        setXX(R.drawable.selector_tab_life, rbLife);
+        setXX(R.drawable.selector_tab_mine, rbMine);
 
-        Drawable drawableMine = getResources().getDrawable(R.drawable.selector_tab_mine);
-        drawableMine.setBounds(0, 0, 80, 80);
-        rbMine.setCompoundDrawables(null, drawableMine, null, null);
 
 //        RadioGroup选中状态改变监听
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -179,19 +189,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_home:
-                        viewPager.setCurrentItem(0, false);
+                        viewPager.setCurrentItem(0);
                         rbHome.setTextSize(14);
                         rbLife.setTextSize(12);
                         rbMine.setTextSize(12);
                         break;
                     case R.id.rb_life:
-                        viewPager.setCurrentItem(1, false);
+                        viewPager.setCurrentItem(1);
                         rbHome.setTextSize(12);
                         rbLife.setTextSize(14);
                         rbMine.setTextSize(12);
                         break;
                     case R.id.rb_mine:
-                        viewPager.setCurrentItem(2, false);
+                        viewPager.setCurrentItem(2);
                         rbHome.setTextSize(12);
                         rbLife.setTextSize(12);
                         rbMine.setTextSize(14);
@@ -200,4 +210,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
+    public void setXX(int id, RadioButton radioButton) {
+        Drawable drawable = getResources().getDrawable(id);
+        drawable.setBounds(0, 0, 80, 80);
+        radioButton.setCompoundDrawables(null, drawable, null, null);//只放上面
+    }
+
+    ;
 }
