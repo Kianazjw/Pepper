@@ -40,11 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        drawerLayout = findViewById(R.id.drawer_layout);
-
         initView();
-
     }
 
 
@@ -105,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void initView() {
+
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         //DrawerLayout中点击事件
         LinearLayout llNavHead = findViewById(R.id.ll_nav_head);

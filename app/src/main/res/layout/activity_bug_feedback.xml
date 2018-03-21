@@ -34,6 +34,7 @@
             android:background="@null"
             android:hint="联系方式(手机/QQ/邮箱)"
             android:textColorHint="#c7c7c7"
+            android:inputType="textEmailAddress"
             android:textCursorDrawable="@drawable/edittext_cursor" />
     </android.support.design.widget.TextInputLayout>
 

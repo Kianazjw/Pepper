@@ -12,13 +12,13 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_gravity="bottom"
-        android:background="#f2f0f0"/>
+        android:background="#f2f0f0" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -27,8 +27,8 @@
         android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp">
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp">
 
         <!--选择框和文字间距的设置方法-->
         <RadioButton

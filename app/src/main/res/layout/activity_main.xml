@@ -9,7 +9,7 @@
     <include
         layout="@layout/content_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <!--侧滑界面-->
     <RelativeLayout
@@ -22,8 +22,7 @@
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp">
 
-        <include
-            layout="@layout/nav_header_main" />
+        <include layout="@layout/nav_header_main" />
     </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>
