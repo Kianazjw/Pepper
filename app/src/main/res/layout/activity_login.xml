@@ -114,7 +114,20 @@
             android:text="登录"
             android:textColor="#fff"
             tools:ignore="OnClick" />
+
+
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:gravity="center_horizontal"
+        android:text="Proudly Presented by CERTer"
+        android:textColor="#c7c7c7"
+        android:textSize="14sp"
+        android:textStyle="italic" />
 
     <com.wayww.edittextfirework.FireworkView
         android:id="@+id/fire_work"

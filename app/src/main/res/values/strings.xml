@@ -9,4 +9,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_bug_feedback">BugFeedbackActivity</string>
+
+
+    <string name="aboutContent">守望先锋的建立是为了应对第一次“智能危机”；对抗智能机械是因为中央智能在制造灭绝人类的机械体；暴雪这几部动画都发生在第二次“智能危机"的时间线上，这个大师是宣扬人类与智能机械和平共处，所以猎空要保护他；死神，也就是雷耶斯，是最早一批的守望先锋。</string>
+
 </resources>

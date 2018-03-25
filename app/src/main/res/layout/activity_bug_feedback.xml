@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.komorebi.pepper.ui.activity.BugFeedbackActivity">
 
-    <include layout="@layout/title" />
-
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/edittext"
-        android:gravity="start"
-        android:hint="吐槽点什么？"
-        android:padding="10dp"
-        android:textCursorDrawable="@drawable/edittext_cursor" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        <include layout="@layout/title" />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:padding="4dp"
-            android:background="@null"
-            android:hint="联系方式(手机/QQ/邮箱)"
-            android:textColorHint="#c7c7c7"
-            android:inputType="textEmailAddress"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edittext"
+            android:gravity="start"
+            android:hint="吐槽点什么？"
+            android:padding="10dp"
             android:textCursorDrawable="@drawable/edittext_cursor" />
-    </android.support.design.widget.TextInputLayout>
 
-    <View
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:background="@null"
+                android:hint="联系方式(手机/QQ/邮箱)"
+                android:inputType="numberSigned"
+                android:padding="4dp"
+                android:textColorHint="#c7c7c7"
+                android:textCursorDrawable="@drawable/edittext_cursor" />
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:background="#c7c7c7" />
+    </LinearLayout>
+
+
+    <com.wayww.edittextfirework.FireworkView
+        android:id="@+id/fire_work"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:background="#c7c7c7" />
-
-</LinearLayout>
+        android:layout_height="match_parent" />
+</RelativeLayout>

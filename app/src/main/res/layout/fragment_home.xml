@@ -34,7 +34,7 @@
             android:layout_marginTop="4dp"
             android:textColor="#808080"
             android:textSize="30sp"
-            android:text="你好啊\n曾德帅同学"
+            android:text="你好啊\n曾XX同学"
             tools:text="你好啊\n曾德帅同学" />
     </LinearLayout>
 

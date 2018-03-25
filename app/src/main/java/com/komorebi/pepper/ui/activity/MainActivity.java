@@ -1,13 +1,12 @@
 package com.komorebi.pepper.ui.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.komorebi.pepper.R;
+import com.komorebi.pepper.ui.adapter.ViewPagerFgAdapter;
 import com.komorebi.pepper.ui.fragment.HomeFragment;
 import com.komorebi.pepper.ui.fragment.LifeFragment;
 import com.komorebi.pepper.ui.fragment.MineFragment;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawerLayout;
 
     private ViewPager viewPager;
-    private MyFragmentPagerAdapter myFragmentPagerAdapter;
+    private ViewPagerFgAdapter viewPagerFgAdapter;
 
 
     private RadioGroup radioGroup;
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View view) {
         Intent intent;
@@ -62,40 +63,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.ll_productionTeam:
                 drawerLayout.closeDrawers();
+                intent = new Intent(MainActivity.this, TeamActivity.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.ll_feedback:
                 intent = new Intent(MainActivity.this, BugFeedbackActivity.class);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 drawerLayout.closeDrawers();
                 break;
             case R.id.ll_setting:
+                intent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 drawerLayout.closeDrawers();
                 break;
             case R.id.ll_exits:
                 drawerLayout.closeDrawers();
                 break;
-        }
-    }
-
-
-    public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
-
-        private List<Fragment> list;
-
-        MyFragmentPagerAdapter(FragmentManager fm, List<Fragment> list) {
-            super(fm);
-            this.list = list;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return list.get(position);
-        }
-
-        @Override
-        public int getCount() {
-//            return list.size();
-            return 3;
         }
     }
 
@@ -125,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alFragment.add(homeFragment);
         alFragment.add(lifeFragment);
         alFragment.add(mineFragment);
-        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), alFragment);
-        viewPager.setAdapter(myFragmentPagerAdapter);
+        viewPagerFgAdapter = new ViewPagerFgAdapter(getSupportFragmentManager(), alFragment);
+        viewPager.setAdapter(viewPagerFgAdapter);
 
         //viewPager和RadioGroup关联
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -175,9 +158,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        drawableMine.setBounds(0, 0, 80, 80);
 //        rbMine.setCompoundDrawables(null, drawableMine, null, null);
 
-        setXX(R.drawable.selector_tab_home, rbHome);
-        setXX(R.drawable.selector_tab_life, rbLife);
-        setXX(R.drawable.selector_tab_mine, rbMine);
+        setRadioButton(R.drawable.selector_tab_home, rbHome);
+        setRadioButton(R.drawable.selector_tab_life, rbLife);
+        setRadioButton(R.drawable.selector_tab_mine, rbMine);
 
 
 //        RadioGroup选中状态改变监听
@@ -209,11 +192,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    public void setXX(int id, RadioButton radioButton) {
+    public void setRadioButton(int id, RadioButton radioButton) {
         Drawable drawable = getResources().getDrawable(id);
         drawable.setBounds(0, 0, 80, 80);
         radioButton.setCompoundDrawables(null, drawable, null, null);//只放上面
     }
 
-    ;
+
 }
