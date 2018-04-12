@@ -1,42 +1,38 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#c9ece6"
+    android:orientation="vertical"
     tools:context="com.komorebi.pepper.ui.fragment.HomeFragment">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#fff" />
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_week_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="46dp"
+        android:textColor="#fff"
+        android:textSize="36sp"
+        tools:text="第0周" />
 
-        <TextView
-            android:id="@+id/tv_week_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="24dp"
-            android:textColor="#808080"
-            android:textSize="36sp"
-            android:text="第6周"
-            tools:text="第6周" />
+    <TextView
+        android:id="@+id/tv_hello_stu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#fff"
+        android:textSize="30sp"
+        tools:text="你好啊\n曾同学" />
 
-        <TextView
-            android:id="@+id/tv_hello_stu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="4dp"
-            android:textColor="#808080"
-            android:textSize="30sp"
-            android:text="你好啊\n曾XX同学"
-            tools:text="你好啊\n曾德帅同学" />
-    </LinearLayout>
+    <include
+        layout="@layout/course_timetable_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp" />
+
+</LinearLayout>
 
 
-</FrameLayout>

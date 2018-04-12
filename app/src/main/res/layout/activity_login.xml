@@ -89,7 +89,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@null"
                 android:hint="一卡通密码"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 android:maxLines="1"
                 android:textColor="#fff" />
         </android.support.design.widget.TextInputLayout>

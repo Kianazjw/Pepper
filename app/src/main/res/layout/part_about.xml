@@ -14,13 +14,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="4dp"
             android:drawableStart="@drawable/about_1"
             android:gravity="center"
-            android:text="华东交通大学守望先锋者..."
+            android:text="华东交通大学守望先锋..."
             android:textColor="@color/aboutIcon"
             android:textSize="15sp" />
 

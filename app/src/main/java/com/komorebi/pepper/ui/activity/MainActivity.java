@@ -1,6 +1,8 @@
 package com.komorebi.pepper.ui.activity;
 
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -11,10 +13,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.komorebi.pepper.R;
 import com.komorebi.pepper.ui.adapter.ViewPagerFgAdapter;
@@ -28,18 +33,19 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private DrawerLayout drawerLayout;
+    private RelativeLayout mLeftMenu;
 
     private ViewPager viewPager;
-    private ViewPagerFgAdapter viewPagerFgAdapter;
-
 
     private RadioGroup radioGroup;
     private RadioButton rbHome, rbLife, rbMine;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initView();
     }
 
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 drawerLayout.closeDrawers();
                 break;
             case R.id.ll_exits:
-                drawerLayout.closeDrawers();
+                showAlertDialog();
                 break;
         }
     }
@@ -85,8 +91,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void initView() {
 
-        drawerLayout = findViewById(R.id.drawer_layout);
+        mLeftMenu = findViewById(R.id.left_drawer);
+        mLeftMenu.setOnClickListener(this);
 
+        drawerLayout = findViewById(R.id.drawer_layout);
         //DrawerLayout中点击事件
         LinearLayout llNavHead = findViewById(R.id.ll_nav_head);
         llNavHead.setOnClickListener(this);
@@ -108,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alFragment.add(homeFragment);
         alFragment.add(lifeFragment);
         alFragment.add(mineFragment);
-        viewPagerFgAdapter = new ViewPagerFgAdapter(getSupportFragmentManager(), alFragment);
+        ViewPagerFgAdapter viewPagerFgAdapter = new ViewPagerFgAdapter(getSupportFragmentManager(), alFragment);
         viewPager.setAdapter(viewPagerFgAdapter);
 
         //viewPager和RadioGroup关联
@@ -143,25 +151,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rbLife = findViewById(R.id.rb_life);
         rbMine = findViewById(R.id.rb_mine);
 
-//        //在RadioButton使用中，可能需要放入图片，但是XML中无法直接设置图片的大小
-//        Drawable drawableHome = getResources().getDrawable(R.drawable.selector_tab_home);
-//        //由 x 和 y 指定左上角的新位置，由 width 和 height 指定新的大小。
-//        // left,tob,rigth,bottom 指该矩形各条边到画布坐标轴的距离（一般是画布的左顶点水平方向为X轴，垂直方向为Y轴，Y轴向下为正
-//        drawableHome.setBounds(0, 0, 80, 80);
-//        rbHome.setCompoundDrawables(null, drawableHome, null, null);//只放上面
-//
-//        Drawable drawableLife = getResources().getDrawable(R.drawable.selector_tab_life);
-//        drawableLife.setBounds(0, 0, 80, 80);
-//        rbLife.setCompoundDrawables(null, drawableLife, null, null);
-//
-//        Drawable drawableMine = getResources().getDrawable(R.drawable.selector_tab_mine);
-//        drawableMine.setBounds(0, 0, 80, 80);
-//        rbMine.setCompoundDrawables(null, drawableMine, null, null);
-
         setRadioButton(R.drawable.selector_tab_home, rbHome);
         setRadioButton(R.drawable.selector_tab_life, rbLife);
         setRadioButton(R.drawable.selector_tab_mine, rbMine);
-
 
 //        RadioGroup选中状态改变监听
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -192,11 +184,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    //在RadioButton使用中，可能需要放入图片，但是XML中无法直接设置图片的大小
     public void setRadioButton(int id, RadioButton radioButton) {
         Drawable drawable = getResources().getDrawable(id);
         drawable.setBounds(0, 0, 80, 80);
         radioButton.setCompoundDrawables(null, drawable, null, null);//只放上面
     }
 
+    public void showAlertDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+        dialog.setMessage("退出登入？");
+        //设置为false,按返回键不能退出
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        long exitTime = System.currentTimeMillis();
+        //设置按键频率与关闭应用的关系
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (!drawerLayout.isDrawerOpen(mLeftMenu)) {
+                if ((System.currentTimeMillis() - exitTime) > 300 && (System.currentTimeMillis() - exitTime) < 2000) {
+                    //返回桌面
+                    finish();
+                } else if ((System.currentTimeMillis() - exitTime) < 300) {
+                    exitTime = System.currentTimeMillis();
+                } else {
+                    exitTime = System.currentTimeMillis();
+                    Toast.makeText(MainActivity.this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            } else {
+                drawerLayout.closeDrawers();
+                return true;
+            }
+        }
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+            if (!drawerLayout.isDrawerOpen(mLeftMenu)) {
+                drawerLayout.openDrawer(mLeftMenu);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }

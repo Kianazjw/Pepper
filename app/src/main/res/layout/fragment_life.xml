@@ -40,7 +40,7 @@
                 android:layout_toEndOf="@+id/iv_introduce"
                 android:maxEms="10"
                 android:singleLine="true"
-                android:text="懂爱的人运气不会太差"
+                android:text="大学生版《向往的生活》"
                 android:textColor="#111111"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -55,10 +55,10 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@+id/iv_introduce"
+                android:ellipsize="end"
                 android:maxHeight="130dp"
                 android:maxLines="5"
-                android:ellipsize="end"
-                android:text="简介：水丁木，七十年代生人，生活中人，文字中人,复杂到一言难尽，简单到不值一提。她的文字质朴简单却有风骨、有主张，洞明练达，舒爽清晰。她厚道，细致，耐心，仿佛一个安静地陪伴在你身旁朋友，“聊赋一格，极尽暖意，延伸人生，善意地倾诉此情此景的感受”，充满智慧和温情。"
+                android:text="日新网讯（实习记者熊豆瑄 钟华报道）近日，芒果台综艺节目《向往的生活》于屏幕热映，该节目向我们展示了一个远离喧嚣，每天只为一天三餐而努力的生活方式。而与此同时，某高校大二女生为购买化妆品，进行多次借债，最后债台高筑的事件引发热议。放眼校园，有自立自强的学生典范，却也不乏一些整天无所事事、虚无度日的大学生们。对于一名即将步入社会的大学生而言，我们真正需要的生活方式究竟是什么模样呢？"
                 android:textColor="#3d3d3d"
                 android:textSize="14sp" />
 
@@ -72,7 +72,7 @@
         android:layout_height="160dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="#fff"
         app:cardCornerRadius="6dp"
@@ -101,7 +101,7 @@
                 android:layout_toEndOf="@+id/iv_introduce"
                 android:maxEms="10"
                 android:singleLine="true"
-                android:text="懂爱的人运气不会太差"
+                android:text="大学生版《向往的生活》"
                 android:textColor="#111111"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -116,12 +116,194 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@+id/iv_introduce"
+                android:ellipsize="end"
                 android:maxHeight="130dp"
                 android:maxLines="5"
-                android:ellipsize="end"
-                android:text="简介：水丁木，七十年代生人，生活中人，文字中人,复杂到一言难尽，简单到不值一提。她的文字质朴简单却有风骨、有主张，洞明练达，舒爽清晰。她厚道，细致，耐心，仿佛一个安静地陪伴在你身旁朋友，“聊赋一格，极尽暖意，延伸人生，善意地倾诉此情此景的感受”，充满智慧和温情。"
+                android:text="日新网讯（实习记者熊豆瑄 钟华报道）近日，芒果台综艺节目《向往的生活》于屏幕热映，该节目向我们展示了一个远离喧嚣，每天只为一天三餐而努力的生活方式。而与此同时，某高校大二女生为购买化妆品，进行多次借债，最后债台高筑的事件引发热议。放眼校园，有自立自强的学生典范，却也不乏一些整天无所事事、虚无度日的大学生们。对于一名即将步入社会的大学生而言，我们真正需要的生活方式究竟是什么模样呢？"
                 android:textColor="#3d3d3d"
                 android:textSize="14sp" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_below="@+id/tv_details"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="46dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="#fff"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="4dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_introduce"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/nav_bg" />
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_toEndOf="@+id/iv_introduce"
+                        android:maxEms="10"
+                        android:singleLine="true"
+                        android:text="大学生版《向往的生活》"
+                        android:textColor="#111111"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_title"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/iv_introduce"
+                        android:ellipsize="end"
+                        android:maxHeight="130dp"
+                        android:maxLines="5"
+                        android:text="日新网讯（实习记者熊豆瑄 钟华报道）近日，芒果台综艺节目《向往的生活》于屏幕热映，该节目向我们展示了一个远离喧嚣，每天只为一天三餐而努力的生活方式。而与此同时，某高校大二女生为购买化妆品，进行多次借债，最后债台高筑的事件引发热议。放眼校园，有自立自强的学生典范，却也不乏一些整天无所事事、虚无度日的大学生们。对于一名即将步入社会的大学生而言，我们真正需要的生活方式究竟是什么模样呢？"
+                        android:textColor="#3d3d3d"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="#fff"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        app:cardMaxElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_introduce"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/nav_bg" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_toEndOf="@+id/iv_introduce"
+                android:maxEms="10"
+                android:singleLine="true"
+                android:text="大学生版《向往的生活》"
+                android:textColor="#111111"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/iv_introduce"
+                android:ellipsize="end"
+                android:maxHeight="130dp"
+                android:maxLines="5"
+                android:text="日新网讯（实习记者熊豆瑄 钟华报道）近日，芒果台综艺节目《向往的生活》于屏幕热映，该节目向我们展示了一个远离喧嚣，每天只为一天三餐而努力的生活方式。而与此同时，某高校大二女生为购买化妆品，进行多次借债，最后债台高筑的事件引发热议。放眼校园，有自立自强的学生典范，却也不乏一些整天无所事事、虚无度日的大学生们。对于一名即将步入社会的大学生而言，我们真正需要的生活方式究竟是什么模样呢？"
+                android:textColor="#3d3d3d"
+                android:textSize="14sp" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_below="@+id/tv_details"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="46dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="#fff"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="4dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_introduce"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/nav_bg" />
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_toEndOf="@+id/iv_introduce"
+                        android:maxEms="10"
+                        android:singleLine="true"
+                        android:text="大学生版《向往的生活》"
+                        android:textColor="#111111"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_title"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/iv_introduce"
+                        android:ellipsize="end"
+                        android:maxHeight="130dp"
+                        android:maxLines="5"
+                        android:text="日新网讯（实习记者熊豆瑄 钟华报道）近日，芒果台综艺节目《向往的生活》于屏幕热映，该节目向我们展示了一个远离喧嚣，每天只为一天三餐而努力的生活方式。而与此同时，某高校大二女生为购买化妆品，进行多次借债，最后债台高筑的事件引发热议。放眼校园，有自立自强的学生典范，却也不乏一些整天无所事事、虚无度日的大学生们。对于一名即将步入社会的大学生而言，我们真正需要的生活方式究竟是什么模样呢？"
+                        android:textColor="#3d3d3d"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
 
         </RelativeLayout>
 
