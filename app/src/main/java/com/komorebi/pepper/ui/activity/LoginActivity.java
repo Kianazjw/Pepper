@@ -16,7 +16,7 @@ import com.komorebi.pepper.MyApplication;
 import com.komorebi.pepper.R;
 import com.komorebi.pepper.api.ApiRetrofit;
 import com.komorebi.pepper.api.RetrofitService;
-import com.komorebi.pepper.bean.LoginBean;
+import com.komorebi.pepper.bean.LoginTokenBean;
 import com.komorebi.pepper.bean.ProfileBean;
 import com.wayww.edittextfirework.FireworkView;
 
@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText etSno, etEcardPwd, etJwcPwd;
 
-    private LoginBean loginBean;
+    private LoginTokenBean loginBean;
     private ProfileBean mProfileBean;
     private RetrofitService retrofitService;
 
@@ -95,9 +95,9 @@ public class LoginActivity extends AppCompatActivity {
 
     //获取token
     public boolean loginCheck(final String sno, final String jwcPwd, final String ePwd) {
-        retrofitService.getCheckLogin(sno, jwcPwd, ePwd).enqueue(new Callback<LoginBean>() {
+        retrofitService.getCheckLogin(sno, jwcPwd, ePwd).enqueue(new Callback<LoginTokenBean>() {
             @Override
-            public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
+            public void onResponse(Call<LoginTokenBean> call, Response<LoginTokenBean> response) {
                 loginBean = response.body();
                 if (loginBean != null) {
                     if (loginBean.msg.equals("success")) {
@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginBean> call, Throwable t) {
+            public void onFailure(Call<LoginTokenBean> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, " ", Toast.LENGTH_SHORT).show();
             }
         });

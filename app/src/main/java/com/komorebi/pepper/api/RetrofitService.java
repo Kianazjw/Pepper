@@ -8,7 +8,7 @@ import com.komorebi.pepper.bean.ECardOwnerBean;
 import com.komorebi.pepper.bean.EcjtuNewsBean;
 import com.komorebi.pepper.bean.ExamArrangeBean;
 import com.komorebi.pepper.bean.KmhLectureBean;
-import com.komorebi.pepper.bean.LoginBean;
+import com.komorebi.pepper.bean.LoginTokenBean;
 import com.komorebi.pepper.bean.MyExperimentBean;
 import com.komorebi.pepper.bean.NewsContentBean;
 import com.komorebi.pepper.bean.ProfileBean;
@@ -27,9 +27,9 @@ import retrofit2.http.Query;
 
 public interface RetrofitService {
     @GET("login")
-    Call<LoginBean> getCheckLogin(@Query("studentid") String stuid,
-                                  @Query("jwxt_password") String jwcPwd,
-                                  @Query("ecard_password") String ecardPwd);
+    Call<LoginTokenBean> getCheckLogin(@Query("studentid") String stuid,
+                                       @Query("jwxt_password") String jwcPwd,
+                                       @Query("ecard_password") String ecardPwd);
 
     @GET("personal_profile")
     Call<ProfileBean> getProfile(@Query("token") String token);

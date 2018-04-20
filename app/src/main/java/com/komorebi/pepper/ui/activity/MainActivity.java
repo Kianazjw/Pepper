@@ -1,9 +1,8 @@
 package com.komorebi.pepper.ui.activity;
 
 import android.app.ActivityOptions;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ import com.komorebi.pepper.ui.adapter.ViewPagerFgAdapter;
 import com.komorebi.pepper.ui.fragment.HomeFragment;
 import com.komorebi.pepper.ui.fragment.LifeFragment;
 import com.komorebi.pepper.ui.fragment.MineFragment;
+import com.komorebi.pepper.utils.ShowSureDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         HomeFragment homeFragment = new HomeFragment();
         LifeFragment lifeFragment = new LifeFragment();
         MineFragment mineFragment = new MineFragment();
-        List<Fragment> alFragment = new ArrayList<>();
+        List<Fragment> alFragment = new ArrayList<>(3);
         alFragment.add(homeFragment);
         alFragment.add(lifeFragment);
         alFragment.add(mineFragment);
@@ -192,23 +192,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void showAlertDialog() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-        dialog.setMessage("退出登入？");
-        //设置为false,按返回键不能退出
-        dialog.setCancelable(false);
-        dialog.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+        ShowSureDialog sureDialog = new ShowSureDialog(this, "是否退出登录？", new ShowSureDialog.CallBack() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+            public void CallBack() {
+                //清除密码
+                SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
+                SharedPreferences.Editor editor = userInfo.edit();//获取Editor
+                editor.clear();
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                //为了防止，点击退出登录后按返回键还能回到程序中
+                finish();
+                startActivity(intent);
             }
         });
-        dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
+        sureDialog.showDialog();
     }
 
     @Override

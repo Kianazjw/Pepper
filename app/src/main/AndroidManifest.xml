@@ -24,10 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:theme="@style/AppTheme"
-            android:name=".ui.activity.ClassMatesActivity" />
-
+        <activity
+            android:name=".ui.activity.ClassMatesActivity"
+            android:theme="@style/AppTheme" />
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.BugFeedbackActivity" />
         <activity android:name=".ui.activity.TeamActivity" />
@@ -39,6 +38,8 @@
         <activity android:name=".ui.activity.ExamActivity" />
         <activity android:name=".ui.activity.ECardActivity" />
         <activity android:name=".ui.activity.CETActivity" />
+        <activity android:name=".ui.activity.ExamScoreActivity" />
+        <activity android:name=".ui.activity.ExperimentActivity"></activity>
     </application>
 
 </manifest>

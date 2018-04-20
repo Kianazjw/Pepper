@@ -43,4 +43,33 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
+    <!--周几-->
+    <style name="style_text_day" parent="Theme.AppCompat.Light">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
+    <!--第几节课-->
+    <style name="style_text_num" parent="Theme.AppCompat.Light">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">30dp</item>
+    </style>
+
+    <style name="style_weekly_column" parent="Theme.AppCompat.Light">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="style_textview_course" parent="Theme.AppCompat.Light">
+        <item name="android:textSize">8sp</item>
+        <item name="android:maxEms">20</item>
+    </style>
+
+
 </resources>

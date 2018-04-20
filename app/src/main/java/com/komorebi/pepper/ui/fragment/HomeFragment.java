@@ -1,10 +1,11 @@
 package com.komorebi.pepper.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import com.komorebi.pepper.MyApplication;
 import com.komorebi.pepper.R;
 import com.komorebi.pepper.api.ApiRetrofit;
 import com.komorebi.pepper.api.RetrofitService;
-import com.komorebi.pepper.bean.LoginBean;
+import com.komorebi.pepper.bean.LoginTokenBean;
 import com.komorebi.pepper.bean.TodayCourseBean;
 import com.komorebi.pepper.ui.activity.CourseActivity;
 import com.komorebi.pepper.ui.adapter.TodayCourseAdapter;
@@ -29,19 +30,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private RetrofitService retrofitService;
-    private LoginBean loginBean;
 
+    private LoginTokenBean loginTokenBean;
     private TodayCourseBean todayCourseBean;
 
-    boolean isTokenget;
-
     private TextView tvWeekNum;
-    private LinearLayout llCourseLoarding;
+    private LinearLayout llCourseLording;
     private ListView lvTodayCourse;
+    private TextView tvNoCourse;
+
+
+    private SharedPreferences todayCourseSP;
+    private SharedPreferences.Editor editor;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -49,61 +55,31 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
+        todayCourseSP = getActivity().getSharedPreferences("todayCourseSP", MODE_PRIVATE);
+        editor = todayCourseSP.edit();//获取Editor
+
+
         initView(view);
 
         retrofitService = new ApiRetrofit().getApiService();
-
-        long startTime = System.currentTimeMillis();
-        if (getToken(MyApplication.sno, MyApplication.jwcPwd, MyApplication.ePwd)) {
-
-            Log.i("HomeFragment获取了没有..", MyApplication.sno);
-
-            long endTime = System.currentTimeMillis();
-            long time = endTime - startTime;
-            Log.i("时间", String.valueOf(time));
-
-            doRequest();
-
-            long endTime2 = System.currentTimeMillis();
-            long time2 = endTime2 - startTime;
-            Log.i("时间X2", String.valueOf(time2));
-        }
-
+        getToken(MyApplication.sno, MyApplication.jwcPwd, MyApplication.ePwd);
 
         return view;
-
     }
 
-    public boolean getToken(String sno, String jwcPwd, String ePwd) {
-        retrofitService.getCheckLogin(sno, jwcPwd, ePwd).enqueue(new Callback<LoginBean>() {
-            @Override
-            public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
-                loginBean = response.body();
-                if (loginBean != null) {
-                    if (loginBean.msg.equals("success")) {
-                        MyApplication.setToken(loginBean.token);
-                        isTokenget = true;
-                    } else {
-                        isTokenget = false;
-                        Toast.makeText(getContext(), loginBean.msg, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LoginBean> call, Throwable t) {
-                Toast.makeText(getContext(), " ", Toast.LENGTH_SHORT).show();
-            }
-        });
-        return isTokenget;
-    }
 
     private void initView(View view) {
         //第几周
         tvWeekNum = view.findViewById(R.id.tv_week_num);
 
-        TextView tvNoCourse = view.findViewById(R.id.tv_course_loarding_no_course);
-        llCourseLoarding = view.findViewById(R.id.ll_today_course_loarding);
+        TextView tvSeeAll = view.findViewById(R.id.tv_see_all);
+        tvSeeAll.setOnClickListener(this);
+
+        LinearLayout llCourse = view.findViewById(R.id.ll_course);
+        llCourse.setOnClickListener(this);
+
+        tvNoCourse = view.findViewById(R.id.tv_course_lording_no_course);
+        llCourseLording = view.findViewById(R.id.ll_today_course_loarding);
 
         String name = MyApplication.name;
         TextView tvStuName = view.findViewById(R.id.tv_hello_stu);
@@ -143,8 +119,38 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    public void getToken(String sno, String jwcPwd, String ePwd) {
+
+//        测试时间
+//        long startTime = System.currentTimeMillis();
+//        long endTime = System.currentTimeMillis();
+//        long time = endTime - startTime;
+//        Log.i("获取Token时间", String.valueOf(time));
+
+        retrofitService.getCheckLogin(sno, jwcPwd, ePwd).enqueue(new Callback<LoginTokenBean>() {
+            @Override
+            public void onResponse(Call<LoginTokenBean> call, Response<LoginTokenBean> response) {
+                loginTokenBean = response.body();
+                if (loginTokenBean != null) {
+                    if (loginTokenBean.msg.equals("success")) {
+                        MyApplication.setToken(loginTokenBean.token);
+                        doRequest();
+                    } else {
+                        Toast.makeText(getContext(), loginTokenBean.msg, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginTokenBean> call, Throwable t) {
+                Toast.makeText(getContext(), "服务器跑路了，告辞 ", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void doRequest() {
         retrofitService.getTodayCourseBean(MyApplication.getToken()).enqueue(new Callback<TodayCourseBean>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(Call<TodayCourseBean> call, Response<TodayCourseBean> response) {
                 todayCourseBean = response.body();
@@ -153,13 +159,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                     String week = "第" + String.valueOf(todayCourseBean.getData().getWeek()) + "周";
                     tvWeekNum.setText(week);
+                    editor.putString("NumOfWeeks", String.valueOf(todayCourseBean.getData().getWeek()));
+                    editor.commit();
 
-                    llCourseLoarding.setVisibility(View.GONE);
+                    llCourseLording.setVisibility(View.GONE);
                     lvTodayCourse.setVisibility(View.VISIBLE);
 
                     String[][] arr = new String[6][4];
                     for (int i = 0; i < 6; i++) {
-                        for (int j = 0; j < 4; j++) {
+                        for (int j = 1; j < 4; j++) {
                             arr[i][j] = "";
                         }
                     }
@@ -173,7 +181,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         TodayCourseBean.DataBean.DaylistBean daylistBean = todayCourseBean.getData().getDaylist().get(i);
 
                         String classSpan = daylistBean.getClassSpan();
-                        Log.i("kle课表", classSpan);
 
                         if (classSpan.contains("1")) {
                             if (!classSpan.contains("0")) {
@@ -203,12 +210,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             arr[5][3] = daylistBean.getTeacherName();
                         }
                     }
-                    llCourseLoarding.setVisibility(View.GONE);
+                    llCourseLording.setVisibility(View.GONE);
                     lvTodayCourse.setVisibility(View.VISIBLE);
 
 
                     TodayCourseAdapter todayCourseAdapter = new TodayCourseAdapter(getActivity(), arr);
                     lvTodayCourse.setAdapter(todayCourseAdapter);
+                } else {
+                    tvNoCourse.setText("Enjoy Yourself!");
                 }
             }
 
