@@ -41,26 +41,46 @@ public class ScoreAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View view = View.inflate(context, R.layout.listview_score_data_item, null);
+        ViewHolder viewHolder;
+        View view;
+
+        if (convertView == null) {
+            view = View.inflate(context, R.layout.listview_score_data_item, null);
+
+            viewHolder = new ViewHolder();
+            viewHolder.tvKcmc = view.findViewById(R.id.tv_kcmc);
+            viewHolder.tvScore = view.findViewById(R.id.tv_score);
+
+            //将viewholder存储在view中
+            view.setTag(viewHolder);
+        } else {
+            view = convertView;
+            viewHolder = (ViewHolder) view.getTag();
+        }
+
+
         Map<String, String> item = list.get(position);
 
-        TextView tv_kcmc = view.findViewById(R.id.tv_kcmc);
-        TextView tv_score = view.findViewById(R.id.tv_score);
-
-        tv_kcmc.setText(item.get("kcmc"));
-        tv_score.setText(item.get("kscj"));
+        viewHolder.tvKcmc.setText(item.get("kcmc"));
+        viewHolder.tvScore.setText(item.get("kscj"));
         try {
             if (Integer.parseInt(item.get("kscj")) < 60) {
-                tv_kcmc.setTextColor(Color.parseColor("#FFc360"));
-                tv_score.setTextColor(Color.parseColor("#FFc360"));
+                viewHolder.tvKcmc.setTextColor(Color.parseColor("#FFc360"));
+                viewHolder.tvScore.setTextColor(Color.parseColor("#FFc360"));
             }
         } catch (Exception e) {
             if (item.get("kscj").contains("不及格")) {
-                tv_kcmc.setTextColor(Color.parseColor("#FFc360"));
-                tv_score.setTextColor(Color.parseColor("#FFc360"));
+                viewHolder.tvKcmc.setTextColor(Color.parseColor("#FFc360"));
+                viewHolder.tvScore.setTextColor(Color.parseColor("#FFc360"));
             }
         }
 
         return view;
     }
+
+    class ViewHolder {
+        TextView tvKcmc;
+        TextView tvScore;
+    }
+
 }

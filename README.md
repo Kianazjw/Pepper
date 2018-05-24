@@ -1,8 +1,11 @@
 # 花椒
 
+[![Watch the video](0.mp4)
+
+
 * 整体项目基于 MVC + RxJava + Retrofit
 * 运用 Animation 提升交互体验
-* 运用数据库存储课表
+* 运用LitePal操作数据库存储课表
 * GitHub 项目地址 : [https://github.com/Kianazjw/Pepper)
 
 
