@@ -1,6 +1,6 @@
 # 花椒
 
-[![Watch the video](0.mp4)
+[![视频简介](0.mp4)]
 
 
 * 整体项目基于 MVC + RxJava + Retrofit
