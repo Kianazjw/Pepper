@@ -17,9 +17,6 @@ import com.wayww.edittextfirework.FireworkView;
 
 public class BugFeedbackActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView imgBack, imgCheck;
-    private EditText etContact;
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -32,12 +29,12 @@ public class BugFeedbackActivity extends AppCompatActivity implements View.OnCli
         getWindow().setReenterTransition(slide);
         setContentView(R.layout.activity_bug_feedback);
 
-        imgBack = findViewById(R.id.img_back);
-        imgCheck = findViewById(R.id.img_check);
+        ImageView imgBack = findViewById(R.id.img_back);
+        ImageView imgCheck = findViewById(R.id.img_check);
         imgCheck.setOnClickListener(this);
         imgBack.setOnClickListener(this);
 
-        etContact = findViewById(R.id.et_contact);
+        EditText etContact = findViewById(R.id.et_contact);
         //烟花效果
         FireworkView mFireworkView = findViewById(R.id.fire_work);
         mFireworkView.bindEditText(etContact);

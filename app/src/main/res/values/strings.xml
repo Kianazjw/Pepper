@@ -11,6 +11,6 @@
     <string name="title_activity_bug_feedback">BugFeedbackActivity</string>
 
 
-    <string name="aboutContent">守望先锋的建立是为了应对第一次“智能危机”；对抗智能机械是因为中央智能在制造灭绝人类的机械体；暴雪这几部动画都发生在第二次“智能危机"的时间线上，这个大师是宣扬人类与智能机械和平共处，所以猎空要保护他；死神，也就是雷耶斯，是最早一批的守望先锋。</string>
+    <string name="team_introduction">计算机紧急响应组（Computer Emergency Response Team 简称CERT）成立于2005年9月1日，是隶属于华东交通大学现代教育技术中心网络信息部，从事网络安全、软件研发、网站建设、硬件维修等技术研究的公益性技术团队。同时也是华东交通大学规模最大、最具亲和力的计算机社团。旗下拥有成熟的技术交流社区——蓝盾社区以及自己的创意智慧和艺术设计团队。</string>
 
 </resources>

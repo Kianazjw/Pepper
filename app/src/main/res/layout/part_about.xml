@@ -21,7 +21,7 @@
             android:drawablePadding="4dp"
             android:drawableStart="@drawable/about_1"
             android:gravity="center"
-            android:text="华东交通大学守望先锋..."
+            android:text="华东交通大学计算机紧急响应组"
             android:textColor="@color/aboutIcon"
             android:textSize="15sp" />
 
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:lineSpacingExtra="3dp"
-            android:text="@string/aboutContent" />
+            android:text="@string/team_introduction" />
 
         <View
             android:layout_width="match_parent"
