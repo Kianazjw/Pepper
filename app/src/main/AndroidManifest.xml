@@ -5,6 +5,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
+
+    <!--android:name="org.litepal.LitePalApplication"-->
     <application
         android:name=".MyApplication"
         android:allowBackup="false"
@@ -39,7 +42,7 @@
         <activity android:name=".ui.activity.ECardActivity" />
         <activity android:name=".ui.activity.CETActivity" />
         <activity android:name=".ui.activity.ExamScoreActivity" />
-        <activity android:name=".ui.activity.ExperimentActivity"></activity>
+        <activity android:name=".ui.activity.ExperimentActivity" />
     </application>
 
 </manifest>

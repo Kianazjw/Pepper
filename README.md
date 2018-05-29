@@ -1,16 +1,20 @@
-# 花椒
+# 花椒ER
 
-* 整体项目基于 MVC  + Retrofit
+* 整体项目基于ViewPager + RadioGroup + Fragment + DrawerLayout,MVC + Retrofit
+* 使用Retrofit进行网络访问
 * 运用 Animation 提升交互体验
 * 运用LitePal操作数据库存储课表
 * GitHub 项目地址 : https://github.com/Kianazjw/Pepper
 
+花椒ER是华东交通大学Android客户端,包含课表、校内新闻、考试安排、成绩查询、电脑维修预约等功能模块。 
 
 
-<img src="/img/1.jpg" width="360" height="740"/>
-<img src="/img/2.jpg" width="360" height="740"/>
-<img src="/img/3.jpg" width="360" height="740"/>
-<img src="/img/4.jpg" width="360" height="740"/>
+
+<img src="/img/1.jpg" width="270" height="555"/>
+<img src="/img/2.jpg" width="270" height="555"/>
+<img src="/img/3.jpg" width="270" height="555"/>
+<img src="/img/4.jpg" width="270" height="555"/>
+<img src="/img/00a.png" width="270" height="555"/>
 
 
 ##  待

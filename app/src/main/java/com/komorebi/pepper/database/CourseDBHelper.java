@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
+
+//废弃代码，改用litepal
 public class CourseDBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "hjxyt.db";

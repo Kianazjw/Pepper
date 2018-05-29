@@ -3,6 +3,8 @@ package com.komorebi.pepper;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+import org.litepal.LitePal;
+
 /**
  * Created by Komorebi on 2018/4/12.
  */
@@ -15,6 +17,9 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
+
+        LitePal.initialize(this);
+
         SharedPreferences userInfo = getApplicationContext().getSharedPreferences("userInfo", MODE_PRIVATE);
         if (userInfo.getString("sno", "").length() != 0) {
             sno = userInfo.getString("sno", "");

@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import com.komorebi.pepper.R;
 
+
+//    接口暂时无法使用
 public class CreditActivity extends AppCompatActivity {
 
     @Override

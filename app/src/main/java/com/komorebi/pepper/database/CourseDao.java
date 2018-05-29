@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
+
+//废弃代码，改用litepal
 public class CourseDao {
     private final Context context;
     private final CourseDBHelper courseDBHelper;
