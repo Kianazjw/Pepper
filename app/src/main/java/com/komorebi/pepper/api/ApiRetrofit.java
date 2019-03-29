@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiRetrofit {
 
-    private static final String BASE_URL = "http://115.159.52.234:81/v2/";
+    private static final String BASE_URL = "";
     private final Retrofit retrofit;
     private final ConcurrentHashMap<Class, Object> services;
 
